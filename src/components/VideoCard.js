@@ -1,13 +1,13 @@
 import React from "react";
 
 const VideoCard = ({ info }) => {
-//   console.log(info);
+    // console.log(info);
 
   const { snippet, statistics } = info;
   const { channelTitle, title, thumbnails } = snippet;
 
   return (
-    <div className="p-2 m-2 w-72 shadow-lg">
+    <div className="p-2 m-2 w-72 shadow-lg h-[340px]">
       <img
         className="rounded-lg"
         src={thumbnails?.medium?.url}
@@ -16,7 +16,7 @@ const VideoCard = ({ info }) => {
       <ul>
         <li className="font-bold py-2">{title}</li>
         <li>{channelTitle}</li>
-        <li>{statistics.viewCount} views</li>
+        <li>{parseFloat(statistics.viewCount / 1000000).toFixed(2)}M views</li>
       </ul>
     </div>
   );
