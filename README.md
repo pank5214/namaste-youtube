@@ -28,4 +28,7 @@ time complexity for search in Object = O(1)
     iphone:
 }
 
-new Map()
+new Map() i.e. hashMap
+
+#
+Live Chat >>>>>>>> infinite scroll >>>>> Pagination

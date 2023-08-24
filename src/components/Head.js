@@ -11,21 +11,7 @@ const Head = () => {
 
   const searchCache = useSelector((store) => store.search);
 
-  /**
-   * searchCache = {
-   *    "iphone":[iphone 12, iphone 13, iphone 13 pro]
-   * }
-   *
-   * searchQuery = iphone
-   */
-
   useEffect(() => {
-    // API Call
-
-    // Make an API Call after every key press
-    // But if the difference between 2 API Calls is <200ms
-    // decline the API Calls
-
     const timer = setTimeout(() => {
       if (searchCache[searchQuery]) {
         setSuggestions(searchCache[searchQuery]);
@@ -37,32 +23,11 @@ const Head = () => {
     return () => {
       clearTimeout(timer);
     };
-  }, [searchQuery]);
-
-  /**
-   *
-   * Debouncing concept in React:
-   *
-   * keypress - i
-   * - render the component
-   * - useEffect()
-   * - start timer => make api call after 200ms
-   *
-   * keypress - ip
-   * - destroy the component(useEffect return method)
-   * - re-render the component
-   * - useEffect()
-   * - start timer => make api call after 200ms
-   *
-   *
-   *
-   */
+  });
 
   const getSearchSuggestions = async () => {
-    // console.log(searchQuery);
     const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
     const json = await data.json();
-    // console.log(json);
     setSuggestions(json[1]);
 
     // Update cache
@@ -78,6 +43,7 @@ const Head = () => {
   const clickMenuHandler = () => {
     dispatch(toggleMenu());
   };
+
   return (
     <div className="grid grid-flow-col m-2 p-5 shadow-md">
       <div className="flex col-span-1">
