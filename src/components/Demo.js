@@ -7,7 +7,7 @@ const Demo = () => {
   const [isDarkTheme, setIsDarkTheme] = useState(false);
 
   // Heavy Operation
-  //   const prime = findPrime(text);
+    // const prime = findPrime(text);
   const prime = useMemo(() => findPrime(text), [text]);
 
   return (

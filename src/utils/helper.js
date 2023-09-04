@@ -192,6 +192,14 @@ export const generateRandomMessage = (length) => {
   return result;
 };
 
+export const generateRandomUserIcon = (
+  <img
+    className="h-8"
+    src={"https://fer-uig.glitch.me?r=" + Math.random()}
+    alt="user-icon"
+  />
+);
+
 export const findPrime = (num) => {
   let i,
     primes = [2, 3],

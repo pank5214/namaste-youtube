@@ -5,6 +5,8 @@ const Demo2 = () => {
 
   const ref = useRef(0);
 
+  console.log("Ref", ref)
+
   /**
    * It's not like => ref = 0;
    *
