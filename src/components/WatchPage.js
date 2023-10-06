@@ -33,7 +33,7 @@ const WatchPage = () => {
           <LiveChat />
         </div>
       </div>
-      <Subscribe videoId={searchParams.get("v")}/>
+      <Subscribe videoId={searchParams.get("v")} />
       <CommentsContainer />
     </div>
   );
