@@ -45,60 +45,60 @@ const Head = () => {
   };
 
   return (
-    <div className="grid grid-flow-col m-2 p-5 shadow-md">
-      <div className="flex col-span-1">
-        <img
-          onClick={() => clickMenuHandler()}
-          className="h-6 mt-3 cursor-pointer"
-          alt="menu"
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcbAn5be5otrWRTf5HFrm6MFimxZoIoaw_Pw&usqp=CAU"
-        />
-        <a href="/">
+      <div className="grid grid-flow-col md:m-2 m-[6px]">
+        <div className="flex col-span-1">
           <img
-            className="h-12 ml-4"
-            alt="youtube-logo"
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsYMaKrVpmKkuutjigpVcbaX43IFRHdiCDTny_z0Q0tPRK_F_LD3iLFJC_Mbo_owgG8A&usqp=CAU"
+            onClick={() => clickMenuHandler()}
+            className="h-6 mt-3 cursor-pointer"
+            alt="humburger-menu"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcbAn5be5otrWRTf5HFrm6MFimxZoIoaw_Pw&usqp=CAU"
           />
-        </a>
-      </div>
-
-      <div className="col-span-10 ml-40">
-        <div>
-          <input
-            className="border border-solid bg-gray-50 rounded-l-full p-2 w-1/2 px-5"
-            placeholder="Search"
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            onFocus={() => setShowSuggestions(true)}
-            onBlur={() => setShowSuggestions(false)}
-          />
-          <button className="border border-solid bg-gray-100 rounded-r-full px-6 py-2 hover:bg-gray-200">
-            🔍
-          </button>
+          <a href="/">
+            <img
+              className="h-12 ml-2"
+              alt="youtube-logo"
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsYMaKrVpmKkuutjigpVcbaX43IFRHdiCDTny_z0Q0tPRK_F_LD3iLFJC_Mbo_owgG8A&usqp=CAU"
+            />
+          </a>
         </div>
 
-        {showSuggestions && (
-          <div className="absolute bg-white ml-1 py-2 px-2 w-[27.5rem] rounded-lg border border-gray-100">
-            <ul>
-              {suggestions.map((s) => (
-                <li key={s} className="py-2 px-3 shadow-sm hover:bg-gray-100">
-                  🔍 {s}
-                </li>
-              ))}
-            </ul>
+        <div className="md:col-span-12 md:ml-40">
+          <div>
+            <input
+              className="border border-solid border-gray-300 rounded-l-full p-2 md:w-1/2 w-8/12 mt-1 md:mt-0 px-5"
+              placeholder="Search"
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onFocus={() => setShowSuggestions(true)}
+              onBlur={() => setShowSuggestions(false)}
+            />
+            <button className="border border-solid border-gray-300 bg-gray-50 rounded-r-full md:px-6 px-4 py-2 hover:bg-gray-200">
+              🔍
+            </button>
           </div>
-        )}
-      </div>
 
-      <div className=" col-span-1">
-        <img
-          className="h-8"
-          alt="user-icon"
-          src="https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png"
-        />
+          {showSuggestions && (
+            <div className="absolute bg-white ml-1 py-2 px-2 w-[27.5rem] rounded-lg border border-gray-100">
+              <ul>
+                {suggestions.map((s) => (
+                  <li key={s} className="py-2 px-3 shadow-sm hover:bg-gray-100">
+                    🔍 {s}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+
+        <div className="col-span-1 md:mt-0 mt-2">
+          <img
+            className="h-8"
+            alt="user-icon"
+            src="https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png"
+          />
+        </div>
       </div>
-    </div>
   );
 };
 

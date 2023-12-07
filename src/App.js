@@ -8,6 +8,7 @@ import MainContainer from "./components/MainContainer";
 import WatchPage from "./components/WatchPage";
 import Demo from "./components/Demo";
 import Demo2 from "./components/Demo2";
+import SearchResults from "./components/SearchResults";
 
 const appRouter = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/",
         element: <MainContainer />,
+      },
+      {
+        path: "results",
+        element: <SearchResults />,
       },
       {
         path: "watch",
