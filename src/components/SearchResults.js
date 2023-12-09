@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import SearchResultsVideoCards from "./SearchResultsVideoCards";
 import { YOUTUBE_SEARCH_RESULTS_API } from "../utils/Constants";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 
 const SearchResults = () => {
   const [searchParams] = useSearchParams();
@@ -15,17 +15,22 @@ const SearchResults = () => {
   const getSearchResultVideoList = async () => {
     const data = await fetch(YOUTUBE_SEARCH_RESULTS_API + searchQuery);
     const json = await data.json();
-    console.log("searchVideoList", json.items);
+    // console.log("searchVideoList", json.items);
     setSearchVideo(json.items);
   };
   return (
     <div>
-      {searchVideo && searchVideo.map((video) => (
-        <SearchResultsVideoCards
-          key={video?.id?.videoId || video?.id?.channelId}
-          video={video}
-        />
-      ))}
+      {searchVideo &&
+        searchVideo.map((video) =>
+        (video?.id?.videoId || video?.id?.channelId) ? (
+            <Link
+              key={video?.id?.videoId || video?.id?.channelId}
+              to={"/watch?v=" + (video?.id?.videoId || video?.id?.channelId)}
+            >
+              <SearchResultsVideoCards video={video} />
+            </Link>
+          ) : null
+        )}
     </div>
   );
 };

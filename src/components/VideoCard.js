@@ -15,7 +15,7 @@ const VideoCard = ({ info }) => {
       <ul>
         <li className="font-bold py-2">{title}</li>
         <li>{channelTitle}</li>
-        <li>{parseFloat(statistics.viewCount / 1000000).toFixed(2)}M views</li>
+        <li>{parseFloat(statistics?.viewCount / 1000000).toFixed(2)}M views</li>
       </ul>
     </div>
   );

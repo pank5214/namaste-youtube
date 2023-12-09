@@ -3,18 +3,22 @@ import useVideosInfo from "../utils/useVideosInfo";
 
 const Subscribe = ({ videoId }) => {
   const videosInfo = useVideosInfo();
-  console.log("videosInfo", videosInfo);
+  console.log("videosInfo:", videosInfo);
+  console.log("videoId:", videoId)
   if (videosInfo.length === 0) return "Loading...";
   return (
     <div className="mx-2 p-2 w-8/12">
       <h1 className="font-extrabold text-xl">
-        {videosInfo.find((videoInfo) => videoInfo.id === videoId).snippet.title}
+        {
+          videosInfo.find((videoInfo) => videoInfo?.id === videoId)?.snippet
+            ?.title
+        }
       </h1>
       <div className="flex flex-wrap gap-x-80 items-center">
         <h3 className="font-bold my-2">
           {
-            videosInfo.find((videoInfo) => videoInfo.id === videoId).snippet
-              .channelTitle
+            videosInfo.find((videoInfo) => videoInfo?.id === videoId)?.snippet
+              ?.channelTitle
           }
         </h3>
         <div className="flex gap-8">

@@ -1,26 +1,47 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import TimeConverter from "./TimeConverter";
+import { YOUTUBE_CHANNEL_DATA_API } from "../utils/Constants";
 
 const SearchResultsVideoCards = ({ video }) => {
-  console.log("receiveProps:", video);
+  // console.log("receiveProps:", video);
+  const { thumbnails, title, publishTime, channelTitle, description } =
+    video?.snippet;
+
+  const [channelDetails, setChannelDetails] = useState(null);
+
+  useEffect(() => {
+    getChannelData();
+  }, []);
+  const getChannelData = async () => {
+    const data = await fetch(
+      YOUTUBE_CHANNEL_DATA_API + video?.snippet?.channelId
+    );
+    const json = await data.json();
+    console.log("channelDetails:", json);
+    setChannelDetails(json);
+  };
+
+  const channelImageLogo =
+    channelDetails?.items?.[0].snippet?.thumbnails?.high?.url;
 
   return (
     <div className="flex py-2">
       <img
         className="h-full rounded-lg"
-        src={video?.snippet?.thumbnails?.medium?.url}
+        src={thumbnails?.medium?.url}
         alt="thumbnails"
       />
       <div className="ml-4">
         <div className="font-semibold text-base">
-          <h1 className="font-bold text-lg">{video?.snippet?.title}</h1>
-          <TimeConverter utcTimestamp={video?.snippet?.publishTime} />
+          <h1 className="font-bold text-lg">{title}</h1>
+          <TimeConverter utcTimestamp={publishTime} />
+        </div>
+        <div className="flex my-2">
+          <img className="rounded-full" src={channelImageLogo} alt="channelImageLogo" />
+          <h1 className="font-semibold text-base">{channelTitle}</h1>
         </div>
         <div>
-          <h1 className="font-semibold text-base">{video?.snippet?.channelTitle}</h1>
-        </div>
-        <div>
-          <h2 className="font-semibold text-sm">{video?.snippet?.description}</h2>
+          <h2 className="font-semibold text-sm">{description}</h2>
         </div>
       </div>
     </div>

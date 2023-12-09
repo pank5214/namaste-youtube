@@ -5,10 +5,11 @@ import Head from "./components/Head";
 import store from "./utils/store";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import MainContainer from "./components/MainContainer";
-import WatchPage from "./components/WatchPage";
 import Demo from "./components/Demo";
 import Demo2 from "./components/Demo2";
-import SearchResults from "./components/SearchResults";
+import { Suspense, lazy } from "react";
+const SearchResult = lazy(() => import("./components/SearchResults"));
+const WatchPage = lazy(() => import("./components/WatchPage"));
 
 const appRouter = createBrowserRouter([
   {
@@ -19,13 +20,22 @@ const appRouter = createBrowserRouter([
         path: "/",
         element: <MainContainer />,
       },
-      {
-        path: "results",
-        element: <SearchResults />,
-      },
+
       {
         path: "watch",
-        element: <WatchPage />,
+        element: (
+          <Suspense>
+            <WatchPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: "results",
+        element: (
+          <Suspense>
+            <SearchResult />
+          </Suspense>
+        ),
       },
       {
         path: "demo",
