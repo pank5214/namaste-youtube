@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import TimeConverter from "./TimeConverter";
 import { YOUTUBE_CHANNEL_DATA_API } from "../utils/Constants";
+import { ViewsConverter } from "../utils/helper";
 
 const SearchResultsVideoCards = ({ video }) => {
   // console.log("receiveProps:", video);
@@ -22,7 +23,9 @@ const SearchResultsVideoCards = ({ video }) => {
   };
 
   const channelImageLogo =
-    channelDetails?.items?.[0].snippet?.thumbnails?.high?.url;
+    channelDetails?.items?.[0].snippet?.thumbnails?.default?.url;
+
+  const views = channelDetails?.items?.[0].statistics?.viewCount;
 
   return (
     <div className="flex py-2">
@@ -34,14 +37,27 @@ const SearchResultsVideoCards = ({ video }) => {
       <div className="ml-4">
         <div className="font-semibold text-base">
           <h1 className="font-bold text-lg">{title}</h1>
-          <TimeConverter utcTimestamp={publishTime} />
+          <div className="flex">
+            <ViewsConverter views = {views} />
+            <h1 className="ml-2">views</h1>
+            <h1 className="mx-1 font-bold -mt-[1px]">•</h1>
+            <TimeConverter utcTimestamp={publishTime} />
+          </div>
         </div>
         <div className="flex my-2">
-          <img className="rounded-full" src={channelImageLogo} alt="channelImageLogo" />
-          <h1 className="font-semibold text-base">{channelTitle}</h1>
+          <img
+            className="rounded-full h-6"
+            src={channelImageLogo}
+            alt="channelImageLogo"
+          />
+          <h1 className="font-bold text-xs self-center ml-2 text-gray-600">
+            {channelTitle}
+          </h1>
         </div>
         <div>
-          <h2 className="font-semibold text-sm">{description}</h2>
+          <h2 className="font-medium text-xs self-center text-gray-600">
+            {description}
+          </h2>
         </div>
       </div>
     </div>

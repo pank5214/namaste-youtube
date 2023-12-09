@@ -226,3 +226,12 @@ export const findPrime = (num) => {
   }
   return primes[num - 1];
 };
+
+export function ViewsConverter({ views }) {
+  const formattedViews = new Intl.NumberFormat("en-US", {
+    notation: "compact",
+    maximumFractionDigits: 1,
+  }).format(views);
+
+  return <div>{formattedViews} </div>;
+}

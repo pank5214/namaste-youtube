@@ -1,9 +1,10 @@
 import React from "react";
+import { ViewsConverter } from "../utils/helper";
+import TimeConverter from "./TimeConverter";
 
 const VideoCard = ({ info }) => {
-
   const { snippet, statistics } = info;
-  const { channelTitle, title, thumbnails } = snippet;
+  const { channelTitle, title, thumbnails, publishedAt } = snippet;
 
   return (
     <div className="p-2 m-2 w-72 shadow-lg h-80 rounded-md">
@@ -15,8 +16,13 @@ const VideoCard = ({ info }) => {
       <ul>
         <li className="font-bold py-2">{title}</li>
         <li>{channelTitle}</li>
-        <li>{parseFloat(statistics?.viewCount / 1000000).toFixed(2)}M views</li>
       </ul>
+      <div className="flex">
+            <ViewsConverter views = {statistics?.viewCount} />
+            <h1 className="ml-2">views</h1>
+            <h1 className="mx-1 font-bold -mt-[1px]">•</h1>
+            <TimeConverter utcTimestamp={publishedAt} />
+          </div>
     </div>
   );
 };
