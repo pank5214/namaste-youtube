@@ -15,7 +15,6 @@ const SearchResults = () => {
   const getSearchResultVideoList = async () => {
     const data = await fetch(YOUTUBE_SEARCH_RESULTS_API + searchQuery);
     const json = await data.json();
-    // console.log("searchVideoList", json.items);
     setSearchVideo(json.items);
   };
   return (

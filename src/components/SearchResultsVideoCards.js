@@ -18,7 +18,6 @@ const SearchResultsVideoCards = ({ video }) => {
       YOUTUBE_CHANNEL_DATA_API + video?.snippet?.channelId
     );
     const json = await data.json();
-    console.log("channelDetails:", json);
     setChannelDetails(json);
   };
 
