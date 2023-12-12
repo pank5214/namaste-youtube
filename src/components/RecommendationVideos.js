@@ -17,7 +17,6 @@ const RecommendationVideos = () => {
   const getRecommendateVideos = async () => {
     const data = await fetch(YOUTUBE_RECOMMENDATION_VIDEOS_API + channelId);
     const json = await data.json();
-    console.log("!@#$%^&", json);
     setVideos(json?.items);
   };
 

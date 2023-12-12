@@ -4,7 +4,6 @@ import { YOUTUBE_CHANNEL_DATA_API } from "../utils/Constants";
 import { ViewsConverter } from "../utils/helper";
 
 const SearchResultsVideoCards = ({ video }) => {
-  // console.log("receiveProps:", video);
   const { thumbnails, title, publishTime, channelTitle, description } =
     video?.snippet;
 
@@ -37,7 +36,7 @@ const SearchResultsVideoCards = ({ video }) => {
         <div className="font-semibold text-base">
           <h1 className="font-bold text-lg">{title}</h1>
           <div className="flex">
-            <ViewsConverter views = {views} />
+            <ViewsConverter views={views} />
             <h1 className="ml-2">views</h1>
             <h1 className="mx-1 font-bold -mt-[1px]">•</h1>
             <TimeConverter utcTimestamp={publishTime} />

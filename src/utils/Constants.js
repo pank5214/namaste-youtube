@@ -1,4 +1,4 @@
-export const LIVE_CHAT_COUNT = 1;
+export const LIVE_CHAT_COUNT = 35;
 
 export const YOUTUBE_VIDEOS_API =
   "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=5&regionCode=IN&key=" +
@@ -26,10 +26,3 @@ export const YOUTUBE_RECOMMENDATION_VIDEOS_API =
   "https://youtube.googleapis.com/youtube/v3/activities?part=snippet%2CcontentDetails&maxResults=5&key=" +
   process.env.REACT_APP_GOOGLE_API_KEY +
   "&channelId=";
-
-// "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&key=AIzaSyB8apx2xyfxFWjwZ4WWStxwtgjGAmQSmnA&id=lV1OOlGwExM"
-
-// https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&key=AIzaSyB8apx2xyfxFWjwZ4WWStxwtgjGAmQSmnA&id=UC2yu2PvMDwT82OmhFYenKpg
-
-
-// https://youtube.googleapis.com/youtube/v3/activities?part=snippet%2CcontentDetails&maxResults=5&key=AIzaSyB8apx2xyfxFWjwZ4WWStxwtgjGAmQSmnA&channelId=UCJrpiw6dS09Zx2Z8d9AFWDA

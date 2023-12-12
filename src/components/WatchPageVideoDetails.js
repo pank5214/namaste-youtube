@@ -7,7 +7,6 @@ import TimeConverter from "./TimeConverter";
 import { ViewsConverter } from "../utils/helper";
 
 const WatchPageVideoDetails = ({ videoId }) => {
-  // console.log("videoId:", videoId)
   const [videoData, setVideoData] = useState(null);
   const dispatch = useDispatch();
 
@@ -26,7 +25,6 @@ const WatchPageVideoDetails = ({ videoId }) => {
   const getVideoData = async () => {
     const data = await fetch(YOUTUBE_VIDEO_DETAILS_API + videoId);
     const json = await data.json();
-    // console.log("videoData", json);
     setVideoData(json?.items?.[0]);
   };
 
