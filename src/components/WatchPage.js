@@ -23,6 +23,7 @@ const WatchPage = () => {
       <div className="p-2 py-2 flex">
         <div>
           <iframe
+            className=" rounded-b-2xl"
             width="1000"
             height="500"
             src={"https://www.youtube.com/embed/" + videoId + "?autoplay=1"}
@@ -35,8 +36,7 @@ const WatchPage = () => {
           <LiveChat />
         </div>
       </div>
-      {/* <Subscribe videoId={searchParams.get("v")} /> */}
-      <WatchPageVideoDetails videoId = {videoId }/>
+      <WatchPageVideoDetails videoId={videoId} />
       <CommentsContainer />
     </div>
   );

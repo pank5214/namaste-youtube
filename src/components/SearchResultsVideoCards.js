@@ -27,7 +27,7 @@ const SearchResultsVideoCards = ({ video }) => {
   const views = channelDetails?.items?.[0].statistics?.viewCount;
 
   return (
-    <div className="flex py-2">
+    <div className="flex m-1 py-2">
       <img
         className="h-full rounded-lg"
         src={thumbnails?.medium?.url}

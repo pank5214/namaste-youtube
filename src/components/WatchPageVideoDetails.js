@@ -29,12 +29,13 @@ const WatchPageVideoDetails = ({ videoId }) => {
   };
 
   const { title, channelId } = videoData?.snippet || {};
+  const { likeCount } = videoData?.statistics || {};
 
   if (videoData === null) return;
   return (
-    <div className="p-2">
+    <div className="px-2 w-[1000px]">
       <h1 className="text-lg font-bold">{title}</h1>
-      <ChannelDetails channelId={channelId} />
+      <ChannelDetails channelId={channelId} likeCount={likeCount} />
     </div>
   );
 };
