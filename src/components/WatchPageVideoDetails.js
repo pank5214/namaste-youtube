@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { VIDEO_DETAILS_API } from "../utils/Constants";
+import { YOUTUBE_VIDEO_DETAILS_API } from "../utils/Constants";
 import ChannelDetails from "./ChannelDetails";
 import { useDispatch } from "react-redux";
 import { clearChannelId, setChannelId } from "../utils/videoSlice";
+import TimeConverter from "./TimeConverter";
+import { ViewsConverter } from "../utils/helper";
 
 const WatchPageVideoDetails = ({ videoId }) => {
   // console.log("videoId:", videoId)
@@ -22,20 +24,31 @@ const WatchPageVideoDetails = ({ videoId }) => {
   }, [videoData, dispatch]);
 
   const getVideoData = async () => {
-    const data = await fetch(VIDEO_DETAILS_API + videoId);
+    const data = await fetch(YOUTUBE_VIDEO_DETAILS_API + videoId);
     const json = await data.json();
-    console.log("videoData", json);
+    // console.log("videoData", json);
     setVideoData(json?.items?.[0]);
   };
 
-  const { title, channelId } = videoData?.snippet || {};
-  const { likeCount } = videoData?.statistics || {};
+  const { title, channelId, publishedAt, description } =
+    videoData?.snippet || {};
+  const { likeCount, viewCount } = videoData?.statistics || {};
 
   if (videoData === null) return;
   return (
     <div className="px-2 w-[1000px]">
       <h1 className="text-lg font-bold">{title}</h1>
       <ChannelDetails channelId={channelId} likeCount={likeCount} />
+      <div className="bg-gray-200 rounded-xl m-2 p-2">
+        <div className="flex font-semibold my-1 text-sm">
+          <div className="mr-4 flex">
+            <ViewsConverter views={viewCount} />
+            <h4 className="ml-1">views</h4>
+          </div>
+          <TimeConverter utcTimestamp={publishedAt} />
+        </div>
+        <p>{description}</p>
+      </div>
     </div>
   );
 };

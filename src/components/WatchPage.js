@@ -1,16 +1,18 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { closeMenu } from "../utils/appSlice";
 import { useSearchParams } from "react-router-dom";
 import CommentsContainer from "./CommentsContainer";
 import LiveChat from "./LiveChat";
-import Subscribe from "./Subscribe";
 import WatchPageVideoDetails from "./WatchPageVideoDetails";
+import RecommendationVideos from "./RecommendationVideos";
 
 const WatchPage = () => {
   const [searchParams] = useSearchParams();
 
   const dispatch = useDispatch();
+
+  const [showLiveChat, setShowLiveChat] = useState(false);
 
   useEffect(() => {
     dispatch(closeMenu());
@@ -31,13 +33,20 @@ const WatchPage = () => {
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
           ></iframe>
+          <WatchPageVideoDetails videoId={videoId} />
+          <CommentsContainer />
         </div>
         <div className="w-full">
-          <LiveChat />
+          {showLiveChat && <LiveChat />}
+          <button
+            className="w-full bg-gray-200 hover:bg-gray-300 cursor-pointer rounded-full text-center font-bold p-2 m-2"
+            onClick={() => setShowLiveChat(!showLiveChat)}
+          >
+            {showLiveChat ? "Hide chat" : "Show chat"}
+          </button>
+          <RecommendationVideos />
         </div>
       </div>
-      <WatchPageVideoDetails videoId={videoId} />
-      <CommentsContainer />
     </div>
   );
 };

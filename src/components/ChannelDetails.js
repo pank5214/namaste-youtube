@@ -16,7 +16,7 @@ const ChannelDetails = ({ channelId, likeCount }) => {
   const getChannelData = async () => {
     const data = await fetch(YOUTUBE_CHANNEL_DATA_API + channelId);
     const json = await data.json();
-    console.log("channelDetails:", json);
+    // console.log("channelDetails:", json);
     setChannelData(json.items?.[0]);
   };
   if (channelData === null) return;
