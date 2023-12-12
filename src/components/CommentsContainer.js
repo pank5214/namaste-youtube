@@ -1,12 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import CommentsList from "./CommentsList";
-import { commentsData } from "../utils/mockData";
+import { YOUTUBE_VIDEO_COMMENTS_API } from "../utils/Constants";
 
-const CommentsContainer = () => {
+const CommentsContainer = ({ videoId }) => {
+  const [comments, setComments] = useState([]);
+
+  useEffect(() => {
+    if (videoId != null) {
+      getComments();
+    }
+  }, [videoId]);
+
+  const getComments = async () => {
+    const data = await fetch(YOUTUBE_VIDEO_COMMENTS_API + videoId);
+    const json = await data.json();
+    setComments(json?.items);
+  };
   return (
-    <div className="m-5 p-2">
-      <h1 className="text-2xl font-bold">Comments:</h1>
-      <CommentsList comments={commentsData} />
+    <div className="m-2 p-2">
+      <h1 className="text-2xl font-bold my-2">Comments</h1>
+      {comments &&
+        comments.map((comment) => (
+          <div key={comment.id}>
+            <CommentsList comment={comment} />
+          </div>
+        ))}
     </div>
   );
 };

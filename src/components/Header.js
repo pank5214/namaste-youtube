@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { toggleMenu } from "../utils/appSlice";
 import { YOUTUBE_SEARCH_API } from "../utils/Constants";
 import { cacheResults } from "../utils/searchSlice";
+import { GoSearch } from "react-icons/go";
 
 const Header = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -63,7 +64,7 @@ const Header = () => {
       </div>
 
       <div className="md:col-span-12 md:ml-40">
-        <div>
+        <div className="flex">
           <input
             className="border border-solid border-gray-300 rounded-l-full p-2 md:w-1/2 w-8/12 mt-1 md:mt-0 px-5"
             placeholder="Search"
@@ -73,17 +74,17 @@ const Header = () => {
             onFocus={() => setShowSuggestions(true)}
             onBlur={() => setShowSuggestions(false)}
           />
-          <button className="border border-solid border-gray-300 bg-gray-50 rounded-r-full md:px-6 px-4 py-2 hover:bg-gray-200">
-            🔍
+          <button className="border border-solid border-gray-300 bg-gray-50 rounded-r-full md:px-6 px-4 hover:bg-gray-200">
+            <GoSearch />
           </button>
         </div>
 
         {showSuggestions && (
-          <div className="absolute bg-white ml-1 py-2 px-2 w-[27.5rem] rounded-lg border border-gray-100">
+          <div className="absolute bg-white py-2 px-2 w-[33%] mt-[2px] rounded-lg border border-gray-100">
             <ul>
               {suggestions.map((s) => (
-                <li key={s} className="py-2 px-3 shadow-sm hover:bg-gray-100">
-                  🔍 {s}
+                <li key={s} className="py-2 flex items-center gap-4 px-3 shadow-sm hover:bg-gray-100">
+                  <GoSearch /> {s}
                 </li>
               ))}
             </ul>

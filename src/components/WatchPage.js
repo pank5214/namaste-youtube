@@ -34,7 +34,7 @@ const WatchPage = () => {
             allowFullScreen
           ></iframe>
           <WatchPageVideoDetails videoId={videoId} />
-          <CommentsContainer />
+          <CommentsContainer videoId={videoId} />
         </div>
         <div className="w-full">
           {showLiveChat && <LiveChat />}
