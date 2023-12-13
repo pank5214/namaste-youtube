@@ -4,8 +4,6 @@ import Body from "./components/Body";
 import store from "./utils/store";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import MainContainer from "./components/MainContainer";
-import Demo from "./components/Demo";
-import Demo2 from "./components/Demo2";
 import { Suspense, lazy } from "react";
 import Header from "./components/Header";
 const SearchResult = lazy(() => import("./components/SearchResults"));
@@ -46,15 +44,6 @@ const appRouter = createBrowserRouter([
           <Suspense>
             <SearchResult />
           </Suspense>
-        ),
-      },
-      {
-        path: "demo",
-        element: (
-          <>
-            <Demo />
-            <Demo2 />
-          </>
         ),
       },
     ],
