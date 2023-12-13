@@ -9,8 +9,8 @@ const Sidebar = () => {
   if (!isMenuOpen) return null;
 
   return (
-    <div className="mx-2 p-2 px-10 bg-gray-50 shadow-md">
-      <ul>
+    <div className="mx-2 p-2 px-10 bg-gray-50 shadow-md font-medium text-sm w-[23%]">
+      <ul className="gap-8">
         <li>
           <Link to={"/"}>Home</Link>
         </li>
@@ -23,7 +23,7 @@ const Sidebar = () => {
       </ul>
 
       <h1 className="font-bold pt-5">Subscriptions</h1>
-      <ul>
+      <ul className="gap-8">
         <li>Music</li>
         <li>Sports</li>
         <li>Gaming</li>
@@ -31,7 +31,7 @@ const Sidebar = () => {
       </ul>
 
       <h1 className="font-bold pt-5">Watch Later</h1>
-      <ul>
+      <ul className="">
         <li>Music</li>
         <li>Sports</li>
         <li>Gaming</li>

@@ -34,26 +34,26 @@ const SearchResultsVideoCards = ({ video }) => {
       />
       <div className="ml-4">
         <div className="font-semibold text-base">
-          <h1 className="font-bold text-lg">{title}</h1>
-          <div className="flex">
+          <h1 className="font-semibold text-xl line-clamp-2">{title}</h1>
+          <div className="flex font-sans font-medium text-sm text-gray-500">
             <ViewsConverter views={views} />
             <h1 className="ml-2">views</h1>
-            <h1 className="mx-1 font-bold -mt-[1px]">•</h1>
+            <h1 className="mx-1 -mt-[1px]">•</h1>
             <TimeConverter utcTimestamp={publishTime} />
           </div>
         </div>
-        <div className="flex my-2">
+        <div className="flex my-4">
           <img
             className="rounded-full h-6"
             src={channelImageLogo}
             alt="channelImageLogo"
           />
-          <h1 className="font-bold text-xs self-center ml-2 text-gray-600">
+          <h1 className="ml-2 line-clamp-1 font-sans font-medium text-sm text-gray-500">
             {channelTitle}
           </h1>
         </div>
         <div>
-          <h2 className="font-medium text-xs self-center text-gray-600">
+          <h2 className="font-sans font-medium text-xs text-gray-500">
             {description}
           </h2>
         </div>
