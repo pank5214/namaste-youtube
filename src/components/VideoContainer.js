@@ -9,13 +9,15 @@ const VideoContainer = () => {
   if (!videos?.length) return <Shimmer />;
 
   return (
-    <div className="flex flex-wrap">
-      {videos &&
-        videos.map((video) => (
-          <Link key={video.id} to={"watch?v=" + video?.id}>
-            <VideoCard info={video} />
-          </Link>
-        ))}
+    <div className="flex">
+      <div className="flex flex-wrap justify-evenly">
+        {videos &&
+          videos.map((video) => (
+            <Link key={video.id} to={"watch?v=" + video?.id}>
+              <VideoCard info={video} />
+            </Link>
+          ))}
+      </div>
     </div>
   );
 };

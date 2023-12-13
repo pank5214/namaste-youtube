@@ -18,7 +18,8 @@ const SearchResults = () => {
     setSearchVideo(json.items);
   };
   return (
-    <div className="w-full ml-2">
+    <div className="flex justify-center">
+      <div>
       {searchVideo &&
         searchVideo.map((video) =>
         (video?.id?.videoId || video?.id?.channelId) ? (
@@ -30,6 +31,7 @@ const SearchResults = () => {
             </Link>
           ) : null
         )}
+    </div>
     </div>
   );
 };

@@ -15,19 +15,19 @@ const ButtonList = () => {
     "Bikes",
     "Dramedy",
     "History",
-    // "Sports",
+    "Sports",
     // "Podcast",
-    // "Gaming",
+    "Gaming",
     // "Gadgets",
   ];
   return (
-    <div className="flex justify-evenly overflow-x-auto">
-      {butttonName.map((button, index) => (
-        <Link key={button} to={"/results?search_query=" + button}>
-          <Button key={index} name={button} />
-        </Link>
-      ))}
-    </div>
+    <div className="flex ml-12">
+        {butttonName.map((button, index) => (
+          <Link key={button} to={"/results?search_query=" + button}>
+            <Button key={index} name={button} />
+          </Link>
+        ))}
+      </div>
   );
 };
 

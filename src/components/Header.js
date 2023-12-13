@@ -57,73 +57,80 @@ const Header = () => {
     navigate("/results?search_query=" + e.target.innerText || searchQuery);
   };
 
-  return (
-    <div className="grid grid-flow-col md:m-2 px-4 m-[6px]">
-      <div className="flex col-span-1">
-        <img
-          onClick={() => clickMenuHandler()}
-          className="h-6 mt-3 cursor-pointer"
-          alt="humburger-menu"
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcbAn5be5otrWRTf5HFrm6MFimxZoIoaw_Pw&usqp=CAU"
-        />
-        <a href="/">
-          <img
-            className="h-12 ml-2 cursor-pointer"
-            alt="youtube-logo"
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsYMaKrVpmKkuutjigpVcbaX43IFRHdiCDTny_z0Q0tPRK_F_LD3iLFJC_Mbo_owgG8A&usqp=CAU"
-          />
-        </a>
-      </div>
+  // <div className="w-full flex p-4 mx-2 shadow-sm fixed z-20 bg-white">
+  // <div className="flex w-3/12 items-center">
 
-      <div className="md:col-span-12 md:ml-40">
-        <div className="flex">
-          <input
-            className="border border-solid border-gray-300 rounded-l-full p-2 md:w-1/2 w-8/12 mt-1 md:mt-0 px-5"
-            placeholder="Search"
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            onFocus={() => setShowSuggestions(true)}
-            onBlur={() => setShowSuggestions(false)}
-            onKeyDown={(e) => {
-              if (!showSuggestions || searchQuery.length === 0) return;
-            }}
+  return (
+    <div className="fixed w-full bg-white">
+      <div className="grid grid-flow-col md:m-2 px-4 m-[6px]">
+        <div className="flex col-span-1">
+          <img
+            onClick={() => clickMenuHandler()}
+            className="h-6 mt-3 cursor-pointer"
+            alt="humburger-menu"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcbAn5be5otrWRTf5HFrm6MFimxZoIoaw_Pw&usqp=CAU"
           />
-          <button
-            className="border border-solid border-gray-300 bg-gray-50 rounded-r-full md:px-6 px-4 hover:bg-gray-200"
-            // Disable button if searchQuery is empty or only contains whitespaceF
-            disabled={!searchQuery.trim()}
-            onClick={() => {
-              navigate("/results?search_query=" + searchQuery);
-            }}
-          >
-            <GoSearch />
-          </button>
+          <a href="/">
+            <img
+              className="h-12 ml-2 cursor-pointer"
+              alt="youtube-logo"
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsYMaKrVpmKkuutjigpVcbaX43IFRHdiCDTny_z0Q0tPRK_F_LD3iLFJC_Mbo_owgG8A&usqp=CAU"
+            />
+          </a>
         </div>
 
-        {showSuggestions && (
-          <div className="absolute cursor-default bg-white py-2 px-2 w-[33%] mt-[2px] rounded-lg border border-gray-100">
-            <ul>
-              {suggestions.map((suggestion) => (
-                <li
-                  key={suggestion}
-                  onMouseDown={(e) => {
-                    handleSuggestion(e);
-                  }}
-                  className="py-2 flex items-center gap-4 px-3 shadow-sm hover:bg-gray-100"
-                >
-                  <GoSearch /> {suggestion}
-                </li>
-              ))}
-            </ul>
+        <div className="md:col-span-10">
+          <div className="flex justify-center">
+            <input
+              className="border border-solid border-gray-300 rounded-l-full p-2 w-[55%] mt-1 md:mt-0 px-5"
+              placeholder="Search"
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onFocus={() => setShowSuggestions(true)}
+              onBlur={() => setShowSuggestions(false)}
+              onKeyDown={(e) => {
+                if (!showSuggestions || searchQuery.length === 0) return;
+              }}
+            />
+            <button
+              className="border border-solid border-gray-300 bg-gray-50 rounded-r-full md:px-6 px-4 hover:bg-gray-200"
+              // Disable button if searchQuery is empty or only contains whitespace
+              disabled={!searchQuery.trim()}
+              onClick={() => {
+                navigate("/results?search_query=" + searchQuery);
+              }}
+            >
+              <GoSearch />
+            </button>
           </div>
-        )}
-      </div>
 
-      <div className="col-span-1 flex justify-around text-3xl mt-2 cursor-pointer">
-        <PiVideoCameraThin className="hover:bg-slate-200 hover:rounded-full" />
-        <PiBellThin className="hover:bg-slate-200 hover:rounded-full" />
-        <PiUserCircleThin className="hover:bg-slate-200 hover:rounded-full" />
+          {showSuggestions && (
+            <div className="flex justify-center mr-16">
+              <div className="absolute cursor-default bg-white py-2 px-2 mt-[2px] w-[37%] rounded-lg border border-gray-100">
+                <ul>
+                  {suggestions.map((suggestion) => (
+                    <li
+                      key={suggestion}
+                      onMouseDown={(e) => {
+                        handleSuggestion(e);
+                      }}
+                      className="py-2 flex items-center gap-4 px-3 shadow-sm hover:bg-gray-100"
+                    >
+                      <GoSearch /> {suggestion}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          )}
+        </div>
+
+        <div className="col-span-1 flex justify-around text-3xl mt-2 cursor-pointer">
+          <PiVideoCameraThin className="hover:bg-slate-200 hover:rounded-full" />
+          <PiBellThin className="hover:bg-slate-200 hover:rounded-full" />
+          <PiUserCircleThin className="hover:bg-slate-200 hover:rounded-full" />
+        </div>
       </div>
     </div>
   );

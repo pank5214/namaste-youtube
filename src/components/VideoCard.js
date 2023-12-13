@@ -22,7 +22,7 @@ const VideoCard = ({ info }) => {
     channelDetails?.items?.[0]?.snippet?.thumbnails?.default?.url;
 
   return (
-    <div className="m-2 p-1 w-[343px] shadow-sm h-[310px] rounded-md">
+    <div className="my-3 py-2 w-[340px] shadow-sm h-[310px] rounded-md">
       <img
         className="rounded-lg w-full"
         src={thumbnails?.medium?.url}
@@ -39,7 +39,7 @@ const VideoCard = ({ info }) => {
 
         <div className="flex flex-col w-full">
           <h1 className="font-bold line-clamp-2 my-2">{title}</h1>
-          <h3 className="mt-0 line-clamp-1 flex font-sans font-medium text-sm text-gray-500">
+          <h3 className="line-clamp-1 flex font-sans font-medium text-sm text-gray-500">
             {channelTitle}
           </h3>
 
