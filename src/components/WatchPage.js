@@ -25,7 +25,7 @@ const WatchPage = () => {
       <div className="p-2 py-2 flex">
         <div>
           <iframe
-            className=" rounded-b-2xl"
+            className=" rounded-2xl"
             width="1000"
             height="500"
             src={"https://www.youtube.com/embed/" + videoId + "?autoplay=1"}

@@ -18,7 +18,7 @@ const SearchResults = () => {
     setSearchVideo(json.items);
   };
   return (
-    <div>
+    <div className="w-full ml-2">
       {searchVideo &&
         searchVideo.map((video) =>
         (video?.id?.videoId || video?.id?.channelId) ? (

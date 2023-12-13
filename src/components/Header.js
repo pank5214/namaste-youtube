@@ -58,7 +58,7 @@ const Header = () => {
   };
 
   return (
-    <div className="grid grid-flow-col md:m-2 m-[6px]">
+    <div className="grid grid-flow-col md:m-2 px-4 m-[6px]">
       <div className="flex col-span-1">
         <img
           onClick={() => clickMenuHandler()}
@@ -102,7 +102,7 @@ const Header = () => {
         </div>
 
         {showSuggestions && (
-          <div className="absolute bg-white py-2 px-2 w-[33%] mt-[2px] rounded-lg border border-gray-100">
+          <div className="absolute cursor-default bg-white py-2 px-2 w-[33%] mt-[2px] rounded-lg border border-gray-100">
             <ul>
               {suggestions.map((suggestion) => (
                 <li

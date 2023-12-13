@@ -6,8 +6,6 @@ import { YOUTUBE_CHANNEL_DATA_API } from "../utils/Constants";
 const VideoCard = ({ info }) => {
   const { snippet, statistics } = info;
   const { channelTitle, title, thumbnails, publishedAt, channelId } = snippet;
-
-  console.log("!@#$%;", info);
   const [channelDetails, setChannelDetails] = useState(null);
 
   useEffect(() => {
@@ -17,7 +15,6 @@ const VideoCard = ({ info }) => {
   const getChannelDetails = async () => {
     const data = await fetch(YOUTUBE_CHANNEL_DATA_API + channelId);
     const json = await data.json();
-    console.log("channeldetailsData:", json);
     setChannelDetails(json);
   };
 
@@ -42,7 +39,9 @@ const VideoCard = ({ info }) => {
 
         <div className="flex flex-col w-full">
           <h1 className="font-bold line-clamp-2 my-2">{title}</h1>
-          <h3 className="mt-0 line-clamp-1 flex font-sans font-medium text-sm text-gray-500">{channelTitle}</h3>
+          <h3 className="mt-0 line-clamp-1 flex font-sans font-medium text-sm text-gray-500">
+            {channelTitle}
+          </h3>
 
           <div className="flex font-sans font-medium text-sm text-gray-500">
             <ViewsConverter views={statistics?.viewCount} />
