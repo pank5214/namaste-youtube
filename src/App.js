@@ -11,10 +11,21 @@ import Header from "./components/Header";
 const SearchResult = lazy(() => import("./components/SearchResults"));
 const WatchPage = lazy(() => import("./components/WatchPage"));
 
+// error - useNavigate() may be used only in the context of a <Router> component.
+// for handling this error we need to put header into our approuter & hence we created Layout
+const Layout = () => {
+  return (
+    <>
+      <Header />
+      <Body />
+    </>
+  );
+};
+
 const appRouter = createBrowserRouter([
   {
     path: "/",
-    element: <Body />,
+    element: <Layout />,
     children: [
       {
         path: "/",
@@ -53,10 +64,7 @@ const appRouter = createBrowserRouter([
 function App() {
   return (
     <Provider store={store}>
-      <div>
-        <Header />
-        <RouterProvider router={appRouter} />
-      </div>
+      <RouterProvider router={appRouter} />
     </Provider>
   );
 }

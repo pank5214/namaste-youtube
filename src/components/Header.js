@@ -4,8 +4,15 @@ import { toggleMenu } from "../utils/appSlice";
 import { YOUTUBE_SEARCH_API } from "../utils/Constants";
 import { cacheResults } from "../utils/searchSlice";
 import { GoSearch } from "react-icons/go";
+import { useNavigate } from "react-router-dom";
+import { PiVideoCameraThin } from "react-icons/pi";
+import { PiBellThin } from "react-icons/pi";
+import { PiUserCircleThin } from "react-icons/pi";
 
 const Header = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [searchQuery, setSearchQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
@@ -29,20 +36,25 @@ const Header = () => {
   const getSearchSuggestions = async () => {
     const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
     const json = await data.json();
-    setSuggestions(json[1]);
+    setSuggestions(json?.[1]);
 
-    // Update cache
+    // Update the cache for searchResults
+    // Storing cache as object in key-value pair
     dispatch(
       cacheResults({
-        [searchQuery]: json[1],
+        [searchQuery]: json?.[1],
       })
     );
   };
 
-  const dispatch = useDispatch();
-
   const clickMenuHandler = () => {
     dispatch(toggleMenu());
+  };
+
+  const handleSuggestion = (e) => {
+    setShowSuggestions(false);
+    setSearchQuery(e.target.innerText);
+    navigate("/results?search_query=" + e.target.innerText || searchQuery);
   };
 
   return (
@@ -73,8 +85,18 @@ const Header = () => {
             onChange={(e) => setSearchQuery(e.target.value)}
             onFocus={() => setShowSuggestions(true)}
             onBlur={() => setShowSuggestions(false)}
+            onKeyDown={(e) => {
+              if (!showSuggestions || searchQuery.length === 0) return;
+            }}
           />
-          <button className="border border-solid border-gray-300 bg-gray-50 rounded-r-full md:px-6 px-4 hover:bg-gray-200">
+          <button
+            className="border border-solid border-gray-300 bg-gray-50 rounded-r-full md:px-6 px-4 hover:bg-gray-200"
+            // Disable button if searchQuery is empty or only contains whitespaceF
+            disabled={!searchQuery.trim()}
+            onClick={() => {
+              navigate("/results?search_query=" + searchQuery);
+            }}
+          >
             <GoSearch />
           </button>
         </div>
@@ -82,9 +104,15 @@ const Header = () => {
         {showSuggestions && (
           <div className="absolute bg-white py-2 px-2 w-[33%] mt-[2px] rounded-lg border border-gray-100">
             <ul>
-              {suggestions.map((s) => (
-                <li key={s} className="py-2 flex items-center gap-4 px-3 shadow-sm hover:bg-gray-100">
-                  <GoSearch /> {s}
+              {suggestions.map((suggestion) => (
+                <li
+                  key={suggestion}
+                  onMouseDown={(e) => {
+                    handleSuggestion(e);
+                  }}
+                  className="py-2 flex items-center gap-4 px-3 shadow-sm hover:bg-gray-100"
+                >
+                  <GoSearch /> {suggestion}
                 </li>
               ))}
             </ul>
@@ -92,12 +120,10 @@ const Header = () => {
         )}
       </div>
 
-      <div className="col-span-1 md:mt-0 mt-2 cursor-pointer">
-        <img
-          className="h-8"
-          alt="user-icon"
-          src="https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png"
-        />
+      <div className="col-span-1 flex justify-around text-3xl mt-2 cursor-pointer">
+        <PiVideoCameraThin className="hover:bg-slate-200 hover:rounded-full" />
+        <PiBellThin className="hover:bg-slate-200 hover:rounded-full" />
+        <PiUserCircleThin className="hover:bg-slate-200 hover:rounded-full" />
       </div>
     </div>
   );
