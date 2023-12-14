@@ -23,7 +23,7 @@ const ButtonList = () => {
   ];
 
   return (
-    <div className="fixed flex ml-12 bg-white max-w-screen hover:overflow-y-scroll overflow-hidden overscroll-contain">
+    <div className="flex ml-12 bg-white max-w-screen hover:overflow-y-scroll overflow-hidden overscroll-contain">
       {butttonName.map((button, index) => (
         <Link key={button} to={"/results?search_query=" + button}>
           <Button key={index} name={button} />

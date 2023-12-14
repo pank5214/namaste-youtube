@@ -21,7 +21,7 @@ const WatchPage = () => {
   const videoId = searchParams.get("v");
 
   return (
-    <div className="flex flex-col w-full">
+    <div className="flex flex-col w-full mt-20">
       <div className="p-2 py-2 flex">
         <div>
           <iframe
@@ -36,7 +36,7 @@ const WatchPage = () => {
           <WatchPageVideoDetails videoId={videoId} />
           <CommentsContainer videoId={videoId} />
         </div>
-        <div className="w-full">
+        <div className="w-fit">
           {showLiveChat && <LiveChat />}
           <button
             className="w-full bg-gray-200 hover:bg-gray-300 cursor-pointer rounded-full text-center font-bold p-2 m-2"

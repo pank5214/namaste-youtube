@@ -37,7 +37,7 @@ const WatchPageVideoDetails = ({ videoId }) => {
     <div className="px-2 w-[1000px]">
       <h1 className="text-lg font-bold">{title}</h1>
       <ChannelDetails channelId={channelId} likeCount={likeCount} />
-      <div className="bg-gray-200 rounded-xl m-2 p-2">
+      <div className="bg-gray-200 rounded-xl my-2 p-2 px-4">
         <div className="flex font-semibold my-1 text-sm">
           <div className="mr-4 flex">
             <ViewsConverter views={viewCount} />
@@ -45,7 +45,7 @@ const WatchPageVideoDetails = ({ videoId }) => {
           </div>
           <TimeConverter utcTimestamp={publishedAt} />
         </div>
-        <p>{description}</p>
+        <p className="py-2">{description}</p>
       </div>
     </div>
   );

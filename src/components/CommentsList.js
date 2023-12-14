@@ -10,8 +10,9 @@ const CommentsList = ({ comment }) => {
     textDisplay,
     authorChannelUrl,
   } = comment?.snippet?.topLevelComment?.snippet || {};
+
   return (
-    <div className="flex">
+    <div className="flex my-6">
       <Link to={authorChannelUrl}>
         <img
           className="rounded-full cursor-pointer"
@@ -30,7 +31,9 @@ const CommentsList = ({ comment }) => {
           </div>
         </Link>
 
-        <p>{textDisplay}</p>
+        <p className="line-clamp-2 text-sm font-sans font-normal">
+          {textDisplay}
+        </p>
       </div>
     </div>
   );

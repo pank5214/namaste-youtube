@@ -19,7 +19,7 @@ const SearchResults = () => {
   };
   return (
     <div className="flex justify-center">
-      <div>
+      <div className="mt-20 ml-4">
       {searchVideo &&
         searchVideo.map((video) =>
         (video?.id?.videoId || video?.id?.channelId) ? (

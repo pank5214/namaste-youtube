@@ -21,7 +21,7 @@ const RecommendationVideos = () => {
   };
 
   return (
-    <div>
+    <div className="flex flex-col">
       {videos &&
         videos.map((video) => (
           <div key={video.id}>
