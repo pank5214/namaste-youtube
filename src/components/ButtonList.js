@@ -11,23 +11,25 @@ const ButtonList = () => {
     "Cricket",
     "Movies",
     "Tech",
-    "Cars",
+    // "Cars",
     "Bikes",
     "Dramedy",
     "History",
     "Sports",
-    // "Podcast",
+    "Podcast",
     "Gaming",
     // "Gadgets",
+    // "Discovery",
   ];
+
   return (
-    <div className="flex ml-12">
-        {butttonName.map((button, index) => (
-          <Link key={button} to={"/results?search_query=" + button}>
-            <Button key={index} name={button} />
-          </Link>
-        ))}
-      </div>
+    <div className="fixed flex ml-12 bg-white max-w-screen hover:overflow-y-scroll overflow-hidden overscroll-contain">
+      {butttonName.map((button, index) => (
+        <Link key={button} to={"/results?search_query=" + button}>
+          <Button key={index} name={button} />
+        </Link>
+      ))}
+    </div>
   );
 };
 

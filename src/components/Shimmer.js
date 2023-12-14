@@ -19,7 +19,7 @@ const ShimmerVideCard = () => {
 
 const Shimmer = () => {
   return (
-    <div className="flex flex-wrap justify-evenly px-10 w-full">
+    <div className="flex flex-wrap justify-between px-10 my-4 mt-14 w-full">
       {Array(24)
         .fill()
         .map((val, index) => {

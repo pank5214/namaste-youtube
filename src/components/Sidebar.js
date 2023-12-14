@@ -1,37 +1,41 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { BsFlag } from "react-icons/bs";
 import { GiHanger } from "react-icons/gi";
 import { ImYoutube } from "react-icons/im";
 import { TbBrandYoutubeKids } from "react-icons/tb";
 import { HiOutlineNewspaper } from "react-icons/hi2";
 import { GoHome, GoHistory, GoTrophy } from "react-icons/go";
-import { PiMusicNoteThin, PiFilmSlateThin } from "react-icons/pi";
+import { AiOutlineLike, AiOutlineBulb } from "react-icons/ai";
+import {
+  PiUserSquare,
+  PiMusicNote,
+  PiFilmSlateLight,
+  PiFire,
+} from "react-icons/pi";
+import {
+  RiVideoLine,
+  RiWirelessChargingLine,
+  RiFeedbackLine,
+} from "react-icons/ri";
+import {
+  IoBagHandleOutline,
+  IoSettingsOutline,
+  IoHelpCircleOutline,
+} from "react-icons/io5";
 import {
   SiYoutubeshorts,
   SiYoutubegaming,
   SiYoutubestudio,
   SiYoutubemusic,
 } from "react-icons/si";
-import { AiOutlineLike, AiOutlineBulb } from "react-icons/ai";
 import {
   MdOutlineSubscriptions,
   MdOutlineArrowForwardIos,
   MdOutlineWatchLater,
   MdPodcasts,
 } from "react-icons/md";
-import { GrChannel } from "react-icons/gr";
-import {
-  RiVideoLine,
-  RiWirelessChargingLine,
-  RiFeedbackLine,
-} from "react-icons/ri";
-import { BsFire, BsFlag } from "react-icons/bs";
-import {
-  IoBagHandleOutline,
-  IoSettingsOutline,
-  IoHelpCircleOutline,
-} from "react-icons/io5";
 
 const Sidebar = () => {
   const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
@@ -72,7 +76,7 @@ const Sidebar = () => {
         <ul className="border-b-[1px] mb-1">
           <Link to={"/results?search_query=yourchannel"}>
             <li className="flex gap-6 py-2 hover:bg-gray-200 rounded-lg w-full">
-              <GrChannel className="text-2xl ml-2" />
+              <PiUserSquare className="text-2xl ml-2" />
               <p>Your channel</p>
             </li>
           </Link>
@@ -110,7 +114,7 @@ const Sidebar = () => {
         <ul className="border-b-[1px] mb-1">
           <Link to={"/results?search_query=trending"}>
             <li className="flex gap-6 py-2 hover:bg-gray-200 rounded-lg w-full">
-              <BsFire className="text-2xl ml-2" />
+              <PiFire className="text-2xl ml-2" />
               <p>Trending</p>
             </li>
           </Link>
@@ -124,13 +128,13 @@ const Sidebar = () => {
 
           <Link to={"/results?search_query=music"}>
             <li className="flex gap-6 py-2 hover:bg-gray-200 rounded-lg w-full">
-              <PiMusicNoteThin className="text-2xl ml-2" />
+              <PiMusicNote className="text-2xl ml-2" />
               <p>Music</p>
             </li>
           </Link>
           <Link to={"/results?search_query=films"}>
             <li className="flex gap-6 py-2 hover:bg-gray-200 rounded-lg w-full">
-              <PiFilmSlateThin className="text-2xl ml-2" />
+              <PiFilmSlateLight className="text-2xl ml-2" />
               <p>Films</p>
             </li>
           </Link>
@@ -246,9 +250,10 @@ const Sidebar = () => {
           </Link>
         </ul>
 
-        <div className="my-4 ml-2 mb-20 font-sans font-bold text-xs text-gray-600">
+        <div className="my-5 ml-2 mb-[81.7px] font-sans font-bold text-xs text-gray-600">
           <p className="">
-            About Press Copyright <br /> Contact us Creator Advertise <br/> Developers
+            About Press Copyright <br /> Contact us Creator Advertise <br />{" "}
+            Developers
           </p>
           <p className="my-4">
             Terms Privacy Policy & Safety <br /> How YouTube works <br /> Test
