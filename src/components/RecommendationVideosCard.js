@@ -11,7 +11,7 @@ const RecommendationVideosCard = ({ video }) => {
 
   return (
     <Link to={"/watch?v=" + videoId}>
-      <div className="flex m-2 p-2 bg-gray-50 rounded-xl shadow-lg cursor-pointer">
+      <div className="flex m-1 p-1 bg-gray-50 rounded-xl shadow-lg cursor-pointer">
         <img
           className="rounded-xl w-3/5"
           src={thumbnails?.medium?.url}
