@@ -3,6 +3,7 @@ import ChatMessage from "./ChatMessage";
 import { useDispatch, useSelector } from "react-redux";
 import { addMessage } from "../utils/chatSlice";
 import { generateRandomMessage, generateRandomName } from "../utils/helper";
+import { IoSendSharp } from "react-icons/io5";
 
 const LiveChat = () => {
   const [liveMessage, setLiveMessage] = useState("");
@@ -33,7 +34,7 @@ const LiveChat = () => {
       </div>
 
       <form
-        className="w-full p-1 ml-1 border border-black rounded-lg"
+        className="w-full p-1 ml-1 border border-black rounded-lg flex items-center justify-center"
         onSubmit={(e) => {
           e.preventDefault();
 
@@ -47,7 +48,7 @@ const LiveChat = () => {
         }}
       >
         <input
-          className="w-4/5 border border-gray-300 rounded-lg px-2"
+          className="w-[95%] border border-gray-400 rounded-full p-2 px-4"
           placeholder="Chat..."
           type="text"
           value={liveMessage}
@@ -55,8 +56,11 @@ const LiveChat = () => {
             setLiveMessage(e.target.value);
           }}
         />
-        <button className="py-1 m-2 px-3 rounded-lg bg-gray-200 hover:bg-gray-300">
-          Send
+        <button
+          className="py-1 m-2 px-3 rounded-lg"
+          disabled={!liveMessage.trim()}
+        >
+          <IoSendSharp className="h-7 w-auto" />
         </button>
       </form>
     </>
