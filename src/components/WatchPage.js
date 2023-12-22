@@ -39,7 +39,9 @@ const WatchPage = () => {
         <div className="w-fit">
           {showLiveChat && <LiveChat />}
           <button
-            className="w-full bg-gray-200 hover:bg-gray-300 cursor-pointer rounded-full text-center font-bold p-2 m-2"
+            className={`w-full bg-gray-200 hover:bg-gray-300 cursor-pointer rounded-full text-center font-bold p-2 ${
+              showLiveChat ? "m-2" : "ml-[2px]"
+            }`}
             onClick={() => setShowLiveChat(!showLiveChat)}
           >
             {showLiveChat ? "Hide chat" : "Show chat"}

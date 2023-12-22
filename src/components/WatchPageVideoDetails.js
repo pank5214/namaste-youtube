@@ -45,7 +45,7 @@ const WatchPageVideoDetails = ({ videoId }) => {
           </div>
           <TimeConverter utcTimestamp={publishedAt} />
         </div>
-        <p className="py-2">{description}</p>
+        <p className="py-1 line-clamp-6">{description}</p>
       </div>
     </div>
   );
