@@ -10,14 +10,14 @@ import { IoEllipsisHorizontal } from "react-icons/io5";
 const ChannelDetails = ({ channelId, likeCount }) => {
   const [channelData, setChannelData] = useState(null);
   useEffect(() => {
+    const getChannelData = async () => {
+      const data = await fetch(YOUTUBE_CHANNEL_DATA_API + channelId);
+      const json = await data.json();
+      setChannelData(json.items?.[0]);
+    };
     getChannelData();
-  }, []);
+  }, [channelId]);
 
-  const getChannelData = async () => {
-    const data = await fetch(YOUTUBE_CHANNEL_DATA_API + channelId);
-    const json = await data.json();
-    setChannelData(json.items?.[0]);
-  };
   if (channelData === null) return;
   const channelImageLogo = channelData?.snippet?.thumbnails?.default?.url;
   const channelTitle = channelData?.snippet?.title;

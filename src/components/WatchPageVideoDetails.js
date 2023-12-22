@@ -11,9 +11,15 @@ const WatchPageVideoDetails = ({ videoId }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    const getVideoData = async () => {
+      const data = await fetch(YOUTUBE_VIDEO_DETAILS_API + videoId);
+      const json = await data.json();
+      setVideoData(json?.items?.[0]);
+    };
     getVideoData();
+
     return () => dispatch(clearChannelId());
-  }, [videoId]);
+  }, [videoId, dispatch]);
 
   useEffect(() => {
     if (videoData) {
@@ -21,12 +27,6 @@ const WatchPageVideoDetails = ({ videoId }) => {
       channelId && dispatch(setChannelId(channelId));
     }
   }, [videoData, dispatch]);
-
-  const getVideoData = async () => {
-    const data = await fetch(YOUTUBE_VIDEO_DETAILS_API + videoId);
-    const json = await data.json();
-    setVideoData(json?.items?.[0]);
-  };
 
   const { title, channelId, publishedAt, description } =
     videoData?.snippet || {};

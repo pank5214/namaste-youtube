@@ -8,30 +8,31 @@ const SearchResults = () => {
   const [searchVideo, setSearchVideo] = useState([]);
 
   const searchQuery = searchParams.get("search_query");
+
   useEffect(() => {
+    const getSearchResultVideoList = async () => {
+      const data = await fetch(YOUTUBE_SEARCH_RESULTS_API + searchQuery);
+      const json = await data.json();
+      setSearchVideo(json.items);
+    };
     getSearchResultVideoList();
   }, [searchQuery]);
 
-  const getSearchResultVideoList = async () => {
-    const data = await fetch(YOUTUBE_SEARCH_RESULTS_API + searchQuery);
-    const json = await data.json();
-    setSearchVideo(json.items);
-  };
   return (
     <div className="flex justify-center">
       <div className="mt-20 ml-4">
-      {searchVideo &&
-        searchVideo.map((video) =>
-        (video?.id?.videoId || video?.id?.channelId) ? (
-            <Link
-              key={video?.id?.videoId || video?.id?.channelId}
-              to={"/watch?v=" + (video?.id?.videoId || video?.id?.channelId)}
-            >
-              <SearchResultsVideoCards video={video} />
-            </Link>
-          ) : null
-        )}
-    </div>
+        {searchVideo &&
+          searchVideo.map((video) =>
+            video?.id?.videoId || video?.id?.channelId ? (
+              <Link
+                key={video?.id?.videoId || video?.id?.channelId}
+                to={"/watch?v=" + (video?.id?.videoId || video?.id?.channelId)}
+              >
+                <SearchResultsVideoCards video={video} />
+              </Link>
+            ) : null
+          )}
+      </div>
     </div>
   );
 };

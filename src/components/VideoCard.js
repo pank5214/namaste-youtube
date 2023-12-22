@@ -9,14 +9,13 @@ const VideoCard = ({ info }) => {
   const [channelDetails, setChannelDetails] = useState(null);
 
   useEffect(() => {
+    const getChannelDetails = async () => {
+      const data = await fetch(YOUTUBE_CHANNEL_DATA_API + channelId);
+      const json = await data.json();
+      setChannelDetails(json);
+    };
     getChannelDetails();
-  }, []);
-
-  const getChannelDetails = async () => {
-    const data = await fetch(YOUTUBE_CHANNEL_DATA_API + channelId);
-    const json = await data.json();
-    setChannelDetails(json);
-  };
+  }, [channelId]);
 
   const channelImageLogo =
     channelDetails?.items?.[0]?.snippet?.thumbnails?.default?.url;

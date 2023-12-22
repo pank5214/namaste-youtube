@@ -6,16 +6,17 @@ const CommentsContainer = ({ videoId }) => {
   const [comments, setComments] = useState([]);
 
   useEffect(() => {
+    const getComments = async () => {
+      const data = await fetch(YOUTUBE_VIDEO_COMMENTS_API + videoId);
+      const json = await data.json();
+      setComments(json?.items);
+    };
+
     if (videoId != null) {
       getComments();
     }
   }, [videoId]);
 
-  const getComments = async () => {
-    const data = await fetch(YOUTUBE_VIDEO_COMMENTS_API + videoId);
-    const json = await data.json();
-    setComments(json?.items);
-  };
   return (
     <div className="m-2 p-2">
       <h1 className="text-2xl font-bold my-2">Comments</h1>
