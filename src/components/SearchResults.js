@@ -13,7 +13,7 @@ const SearchResults = () => {
     const getSearchResultVideoList = async () => {
       const data = await fetch(YOUTUBE_SEARCH_RESULTS_API + searchQuery);
       const json = await data.json();
-      setSearchVideo(json.items);
+      setSearchVideo(json?.items);
     };
     getSearchResultVideoList();
   }, [searchQuery]);

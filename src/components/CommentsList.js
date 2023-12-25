@@ -30,10 +30,9 @@ const CommentsList = ({ comment }) => {
             </span>
           </div>
         </Link>
-
-        <p className="line-clamp-2 text-sm font-sans font-normal">
-          {textDisplay}
-        </p>
+        <div className="line-clamp-2 text-sm font-sans font-normal">
+          <p className="w-[875px]">{textDisplay}</p>
+        </div>
       </div>
     </div>
   );

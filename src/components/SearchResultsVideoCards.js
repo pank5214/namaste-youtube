@@ -4,21 +4,16 @@ import { YOUTUBE_CHANNEL_DATA_API } from "../utils/Constants";
 import { ViewsConverter } from "../utils/helper";
 
 const SearchResultsVideoCards = ({ video }) => {
-  const {
-    thumbnails,
-    title,
-    publishTime,
-    channelTitle,
-    description,
-    channelId,
-  } = video?.snippet;
+  const { thumbnails, title, publishTime, channelTitle, description } =
+    video?.snippet;
 
+  const channelId = video?.snippet?.channelId;
   const [channelDetails, setChannelDetails] = useState(null);
 
   useEffect(() => {
     const getChannelData = async () => {
       try {
-        const data = await fetch(YOUTUBE_CHANNEL_DATA_API + { channelId });
+        const data = await fetch(YOUTUBE_CHANNEL_DATA_API + channelId);
         const json = await data.json();
         setChannelDetails(json);
       } catch (err) {
