@@ -3,7 +3,7 @@ import { YOUTUBE_VIDEOS_API } from "./Constants";
 
 const useVideosInfo = () => {
   const [videos, setVideos] = useState([]);
-  const [pageToken, setPageToken] = useState("");
+  const [pageToken, setPageToken] = useState(null);
 
   useEffect(() => {
     getVideos();
@@ -12,14 +12,14 @@ const useVideosInfo = () => {
   useEffect(() => {
     const handleScroll = () => {
       if (
-        window.innerHeight + document.documentElement.scrollTop + 1 >=
-          document.documentElement.scrollHeight &&
-        pageToken != null
+        window.innerHeight + window.scrollY >=
+          document.documentElement.scrollHeight - 100 &&
+        pageToken !== null
       ) {
-        return;
+        getVideos();
       }
-      getVideos();
     };
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [pageToken]);
@@ -27,18 +27,19 @@ const useVideosInfo = () => {
   const getVideos = async () => {
     try {
       const url =
-        pageToken !== ""
+        pageToken !== null
           ? `${YOUTUBE_VIDEOS_API}&pageToken=${pageToken}`
           : YOUTUBE_VIDEOS_API;
       const data = await fetch(url);
       const json = await data.json();
       console.log("json:", json);
       setVideos((prevVideos) => [...prevVideos, ...json?.items]);
-      setPageToken(json?.nextPageToken || "");
+      setPageToken(json?.nextPageToken || null);
     } catch (e) {
       console.error(e);
     }
   };
+
   return videos;
 };
 
