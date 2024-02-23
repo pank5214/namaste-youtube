@@ -4,9 +4,7 @@ import useVideosInfo from "../utils/useVideosInfo";
 import Shimmer from "./Shimmer";
 
 const VideoContainer = () => {
-  const videos = useVideosInfo();
-
-  if (!videos?.length) return <Shimmer />;
+  const { videos, showShimmer } = useVideosInfo();
 
   return (
     <div className="flex">
@@ -17,6 +15,7 @@ const VideoContainer = () => {
               <VideoCard info={video} />
             </Link>
           ))}
+        {showShimmer && <Shimmer />}
       </div>
     </div>
   );
